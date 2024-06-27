@@ -26,8 +26,8 @@ func (rb *RingBuffer) Add(timestamp time.Time) {
 		rb.Timestamps[(rb.StartIndex+rb.Count)%rb.Capacity] = timestamp
 		rb.Count++
 	} else {
+		rb.Timestamps[rb.StartIndex] = timestamp
 		rb.StartIndex = (rb.StartIndex + 1) % rb.Capacity
-		rb.Timestamps[(rb.StartIndex+rb.Count-1)%rb.Capacity] = timestamp
 	}
 }
 
